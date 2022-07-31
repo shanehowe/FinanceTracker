@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>FinanceTracker | Dashboard</title>
+</head>
+<body class="body">
+    <nav class="navigation">
+        <div>
+            <h4 class="nav-logo">Finance<span id="home-green">Tracker</span></h4>
+        </div>
+        <ul class="nav-elements">
+            <li><a class="nav-a" href="{{ url_for('index') }}">Home</a></li>
+
+            <li><a class="nav-a" href="{{ url_for('account') }}">Dashboard</a></li>
+
+            <li><a class="nav-a" href="{{ url_for('logout') }}">Log Out</a></li>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="hidden-menu">
+            <li><a class="nav-a-1" href="{{ url_for('index') }}">Home</a></li>
+
+            <li><a class="nav-a-1" href="{{ url_for('account') }}">Dashboard</a></li>
+
+            <li><a class="nav-a-1" href="{{ url_for('logout') }}">Log Out</a></li>
+        </div>
+        <section class="accounts-container">
+            <div class="delete-expense" >
+                <h2>Current Balance</h2>
+                <p class="mobile-margin">€{{'%0.2f'|format(current_user.balance|float)}}</p>
+
+                <form action="/dashboard" method="post">
+                    {{ add_form.csrf_token }}
+                    <p>{{ add_form.amount(placeholder="Enter Amount") }} {{ add_form.submit(class_="btn1") }}</p>
+                </form>
+            </div>
+
+            <div class="delete-expense">
+                <p class="mobile-margin">Remove An Expense</p>
+                <form action="/dashboard" method="post" >
+                    <select name="expenses" class="select">
+                        <option value="" disabled selected>Select expense</option>
+                        {% for expense in expenses %}
+                        <option value="{{ expense.id }}">{{ expense.category }}, €{{'%0.2f'|format(expense.amount|float)}}, {{ expense.date }} </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn1" style="padding: 4px;">Delete Expense</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="graph">
+            <canvas id="myChart"></canvas>
+        </div>
+    </main>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+            function myFunction() {
+            var x = document.getElementById("hidden-menu");
+            if (x.style.display === "flex") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "flex";
+                x.style.height = "70px"
+            }
+        }
+
+        const labels = [
+          'Food & Drinks',
+          'Bills & Utilities',
+          'Shopping',
+          'Transport',
+          'Others'
+        ];
+      
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Total spent this month',
+            backgroundColor: 'rgb(70, 114, 254)',
+            borderColor: 'rgb(70, 114, 254)',
+            data: [{{ food_drinks.sum }}, {{ bills.sum }}, {{ shopping.sum }}, {{ transport.sum }}, {{ others.sum }}],
+          }]
+        };
+      
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {},
+        };
+
+        const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+      </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>FinanceTracker | Home</title>
+</head>
+<body class="forms-body">
+    <nav class="navigation">
+        <div>
+            <h4 class="nav-logo">Finance<span id="home-green">Tracker</span></h4>
+        </div>
+        <ul class="nav-elements">
+            <li><a class="nav-a" href="{{ url_for('index') }}">Home</a></li>
+
+            <li><a class="nav-a" href="{{ url_for('account') }}">Dashboard</a></li>
+
+            <li><a class="nav-a" href="{{ url_for('logout') }}">Log Out</a></li>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </ul>
+
+    </nav>
+
+    <main>
+        <div id="hidden-menu">
+            <li><a class="nav-a-1" href="{{ url_for('index') }}">Home</a></li>
+
+            <li><a class="nav-a-1" href="{{ url_for('account') }}">Dashboard</a></li>
+
+            <li><a class="nav-a-1" href="{{ url_for('logout') }}">Log Out</a></li>
+        </div>
+
+        <section class="analytics">
+            <div class="balance">
+                <h2>Balance</h2>
+                <p>€{{'%0.2f'|format(current_user.balance|float)}}</p>
+                
+            </div>
+            <div id="screen-size" class="balance">
+                <h2>Monthly Total</h2>
+                <p>€{{'%0.2f'|format(total|float)}}</p>
+                
+            </div>
+            <div class="categories">
+                <div class="categories-container">
+                    <h2>Food & Drinks</h2>
+                    {% if food_drinks is not none %}
+                    <p class="amount-spent">€{{'%0.2f'|format(food_drinks.sum|float)}}</p>
+                    {% else %}
+                    <p class="amount-spent">€0.00</p>
+                    {% endif %}
+                </div>
+
+                <div class="categories-container">
+                    <h2>Shopping</h2>
+                    {% if shopping is not none %}
+                    <p class="amount-spent">€{{'%0.2f'|format(shopping.sum|float)}}</p>
+                    {% else %}
+                    <p class="amount-spent">€0.00</p>
+                    {% endif %}
+                </div>
+
+                <div class="categories-container">
+                    <h2>Bills & Utilities</h2>
+                    {% if bills is not none %}
+                    <p class="amount-spent">€{{'%0.2f'|format(bills.sum|float)}}</p>
+                    {% else %}
+                    <p class="amount-spent">€0.00</p>
+                    {% endif %}
+                </div>
+
+                <div class="categories-container">
+                    <h2>Transport</h2>
+                    {% if transport is not none %}
+                    <p class="amount-spent">€{{'%0.2f'|format(transport.sum|float)}}</p>
+                    {% else %}
+                    <p class="amount-spent">€0.00</p>
+                    {% endif %}
+                </div>
+
+                <div class="categories-container">
+                    <h2>Others</h2>
+                    {% if others is not none %}
+                    <p class="amount-spent">€{{'%0.2f'|format(others.sum|float)}}</p>
+                    {% else %}
+                    <p class="amount-spent">€0.00</p>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <section class="table-form">
+            <div class="spread-table" >
+                <div id="table-margin" style="height: 263px;overflow:auto;border: 2px solid #fff;border-radius: 7px;">
+                <table id="customers">
+                    <tr>
+                      <th>Category</th>
+                      <th>Expense</th>
+                      <th>Date</th>
+                    </tr>
+                    {% for expense in expenses %}
+                    <tr>
+                      <td>{{ expense.category }}</td>
+                      <td>€{{'%0.2f'|format(expense.amount|float)}}</td>
+                      <td>{{ expense.date }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+            </div>
+            <div id="form-margin">
+                <form action="/home" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.csrf_token() }}
+                    <p>{{ form.amount.label }} {{ form.amount(class_="input-special") }}</p>
+                    <p >{{ form.select.label }} {{ form.select(class_="input") }}</p>
+                    <p>{{ form.submit(class_="btn") }}</p>
+                 </form>
+            </div>
+        </section>
+    </main>
+    <footer  class="waves">
+        <svg id="waves-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#4672fe" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,176C480,149,600,75,720,42.7C840,11,960,21,1080,53.3C1200,85,1320,139,1380,165.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </footer>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("hidden-menu");
+            if (x.style.display === "flex") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "flex";
+                x.style.height = "70px"
+            }
+        }
+    </script>
+</body>
+</html>
