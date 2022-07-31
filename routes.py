@@ -140,8 +140,6 @@ def account():
         except:
             db.session.rollback()
 
-
-
         if add_form.validate_on_submit():
             new_balance = add_form.amount.data
             current_user.balance += float(new_balance)

@@ -8,29 +8,6 @@ Users can then navigate to the dashboard page will allows users to update their 
 
 All animations that happen in the web app are made using Animation.ss library.
 
-# Images
-
-### Welcome
-
-<img height="400" width="1000" alt="login_page" src="/readme_imgs/main.png">
-
-### Log In
-
-<img height="400" width="1440" alt="login_page" src="/readme_imgs/login_page.png">
-
-### Register 
-
-<img width="1440" alt="login_page" src="/readme_imgs/register.png">
-
-### Home 
-
-<img  height="400" width="1440" alt="login_page" src="/readme_imgs/home.png">
-
-### Dashboard 
-
-<img width="1440" alt="login_page" src="/readme_imgs/dashboard.png">
-
-
 ## Forms
 
 * All forms are created by utilizing flask_wtf & wtforms.
@@ -78,3 +55,25 @@ All animations that happen in the web app are made using Animation.ss library.
 * Flask
 * Animate.css
 * Chart.js
+
+# Images
+
+### Welcome
+
+<img height="400" width="1000" alt="login_page" src="/readme_imgs/main.png">
+
+### Log In
+
+<img height="400" width="1440" alt="login_page" src="/readme_imgs/login_page.png">
+
+### Register 
+
+<img width="1440" alt="login_page" src="/readme_imgs/register.png">
+
+### Home 
+
+<img  height="400" width="1440" alt="login_page" src="/readme_imgs/home.png">
+
+### Dashboard 
+
+<img width="1440" alt="login_page" src="/readme_imgs/dashboard.png">

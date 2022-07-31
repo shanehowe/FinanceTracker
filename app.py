@@ -33,7 +33,7 @@ class Expenses(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self) -> str:
-        return "<{} {} {}>".format(self.category, self.amount, self.date)
+        return "<Expense {} {} {}>".format(self.category, self.amount, self.date)
     
 class CategorySums(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -42,6 +42,6 @@ class CategorySums(db.Model):
     category_sums_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self) -> str:
-        return "<{} {} {}>".format(self.category, self.sum, self.category_sums_id)
+        return "<Sum {} {} {}>".format(self.category, self.sum, self.category_sums_id)
     
 import routes
