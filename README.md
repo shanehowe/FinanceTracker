@@ -8,6 +8,10 @@ Users can then navigate to the dashboard page will allows users to update their 
 
 All animations that happen in the web app are made using Animation.ss library.
 
+## Why FinanceTracker?
+
+* I built FinanceTracker for my CS50x final project.
+
 ## Forms
 
 * All forms are created by utilizing flask_wtf & wtforms.
