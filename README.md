@@ -12,8 +12,7 @@ All animations that happen in the web app are made using Animation.ss library.
 
 ### Welcome
 
-<img width="1440" alt="login_page" src="/readme_imgs/main.png">
-
+![Welcome page](readme_imgs/login_page.png)
 
 <img width="1440" alt="login_page" src="/readme_imgs/main_responsive.png">
 
