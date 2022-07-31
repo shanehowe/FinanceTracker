@@ -12,7 +12,7 @@ All animations that happen in the web app are made using Animation.ss library.
 
 ### Welcome
 
-![Welcome page](readme_imgs/login_page.png)
+![Welcome page](/Users/NewUser/Desktop/programming/web-dev/flask/readme_imgs/main.png)
 
 <img width="1440" alt="login_page" src="/readme_imgs/main_responsive.png">
 
