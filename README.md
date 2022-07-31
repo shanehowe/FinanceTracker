@@ -14,13 +14,13 @@ All animations that happen in the web app are made using Animation.ss library.
 
 <img height="400" width="1000" alt="login_page" src="/readme_imgs/main.png">
 
-<img height="400" width="1000" alt="login_page" src="/readme_imgs/main_responsive.png">
+<img height="500" width="800" alt="login_page" src="/readme_imgs/main_responsive.png">
 
 ### Log In
 
 <img height="400" width="1440" alt="login_page" src="/readme_imgs/login_page.png">
 
-<img height="400" width="1440" alt="login page mobile" src="/readme_imgs/login_page_responsive.png">
+<img height="500" width="800" alt="login page mobile" src="/readme_imgs/login_page_responsive.png">
 
 ### Register 
 
