@@ -2,11 +2,14 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
+from dotenv import dotenv_values
+
+config = dotenv_values(".env")
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "8f42a73054b1749f8f58848be5e6502c"
+app.config["SECRET_KEY"] = config["SECRET_KEY"]
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = config["SQLALCHEMY_DATABASE_URI"]
 
 db = SQLAlchemy(app)
 
